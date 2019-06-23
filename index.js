@@ -11,6 +11,6 @@ express()
   .post('/w9prove', function(req, res) 
   { 
     var t = req.body.type;
-    res.render('pages/w9prove/index', {type: t});
+    res.render('pages/w9prove/index', {t: t});
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
