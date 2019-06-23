@@ -16,7 +16,7 @@ express()
     var type = req.body.t;
     var cost = 0;
 
-    if (type == "stamped")
+    if (t == "stamped")
     {
       if (weight <= 1)
       {
@@ -35,7 +35,7 @@ express()
         cost = 1
       }
     }
-    else if (type == "metered")
+    else if (t == "metered")
     {
       if (weight <= 1)
       {
@@ -54,11 +54,11 @@ express()
         cost = 0.95
       }
     }
-    else if (type == "large")
+    else if (t == "large")
     {
       cost = 0.85 + 0.15 * ((weight + 1) / 1)
     }
-    else if (type == "retail")
+    else if (t == "retail")
     {
       if (weight <= 4)
       {
