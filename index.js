@@ -10,7 +10,7 @@ express()
   .get('/w9prove', (req, res) => res.render('public/getRate'))
   .post('/getRate', function(req, res) 
   { 
-    //var t1 = req.body.weight;
+    var t1 = req.body.weight;
     res.render('pages/getRate')//, {t2: t1});
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
