@@ -13,7 +13,7 @@ express()
   .post('/getRate', function(req, res) 
   { 
     var weight = req.body.weight;
-    var type = req.body.t;
+    var t = req.body.t;
     var cost = 0;
 
     if (t == "stamped")
