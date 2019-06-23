@@ -11,6 +11,6 @@ express()
   .post('/getRate', function(req, res) 
   { 
     var t1 = req.body.weight;
-    res.render('pages/w9prove/index', {t2: t1});
+    res.render('pages/getRate', {t2: t1});
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
