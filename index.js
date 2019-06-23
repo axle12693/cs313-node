@@ -13,7 +13,7 @@ express()
   .post('/getRate', function(req, res) 
   { 
     var weight = req.body.weight;
-    var type = req.body.type;
+    var type = req.body.t;
     var cost = 0;
 
     if (type == "stamped")
@@ -78,6 +78,6 @@ express()
       }
     }
 
-    res.render('pages/getRate', {cost: cost, type: type, weight: weight});
+    res.render('pages/getRate', {cost: cost, t: t, weight: weight});
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
