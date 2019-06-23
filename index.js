@@ -8,7 +8,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/w9prove', (req, res) => res.render('public/w9prove/index'))
-  .post('/w9prove', function(req, res) 
+  .post('/getRate', function(req, res) 
   { 
     var t = req.body.type;
     res.render('pages/w9prove/index', {t: t});
