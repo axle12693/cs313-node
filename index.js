@@ -7,7 +7,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/w9prove', (req, res) => res.render('public/w9prove/index'))
+  .get('/w9prove', (req, res) => res.render('public/getRate'))
   .post('/getRate', function(req, res) 
   { 
     var t1 = req.body.weight;
