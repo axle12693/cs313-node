@@ -56,7 +56,7 @@ express()
     }
     else if (t == "large")
     {
-      cost = 0.85 + 0.15 * ((weight + 1) / 1)
+      cost = 0.85 + 0.15 * Math.ceil(weight)
     }
     else if (t == "retail")
     {
