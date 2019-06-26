@@ -6,6 +6,11 @@ const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -98,6 +103,6 @@ function show_forum_categories(req, res)
     }
 
     // Log this to the console for debugging purposes.
-    res.send(pool) //test
+    res.send(result.rows) //test
   });
 }
