@@ -98,6 +98,6 @@ function show_forum_categories(req, res)
     }
 
     // Log this to the console for debugging purposes.
-    res.send(result.rows)
+    res.send(pool) //test
   });
 }
