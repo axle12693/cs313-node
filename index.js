@@ -91,7 +91,7 @@ express()
 function show_forum_categories(req, res)
 {
   sql = "SELECT * FROM FORUM_CATEGORY";
-  pool.query(sql, function(error, result) {
+  pool.query(sql, function(err, result) {
     if (err) {
       console.log("Error in query: ")
       console.log(err);
