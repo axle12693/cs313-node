@@ -89,7 +89,7 @@ express()
 
     res.render('pages/getRate', {cost: cost, t: t, weight: weight});
   })
-  .get('/forum', show_forum_categories)
+  .get('/forum', (req, res) => res.render("views/forum_project/index.ejs"))
   .listen(PORT, () => console.log('Listening on ${ PORT }'))
 
 
@@ -101,8 +101,6 @@ function show_forum_categories(req, res)
       console.log("Error in query: ")
       console.log(err);
     }
-
-    // Log this to the console for debugging purposes.
     res.send(result.rows) //test
   });
 }
