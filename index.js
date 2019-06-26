@@ -2,6 +2,9 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 const bodyParser = require('body-parser')
+const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({connectionString: connectionString});
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -80,4 +83,20 @@ express()
 
     res.render('pages/getRate', {cost: cost, t: t, weight: weight});
   })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .get('/forum', show_forum_categories)
+  .listen(PORT, () => console.log('Listening on ${ PORT }'))
+
+
+function show_forum_categories(req, res)
+{
+  sql = "SELECT * FROM FORUM_CATEGORY";
+  pool.query(sql, function(error, result) {
+    if (err) {
+      console.log("Error in query: ")
+      console.log(err);
+    }
+
+    // Log this to the console for debugging purposes.
+    res.send(result.rows)
+  });
+}
