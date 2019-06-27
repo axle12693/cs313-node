@@ -7,7 +7,6 @@ function displayForumCategories()
             html += "<div class=\"card bg-primary text-white\">";
             html += "<div class=\"card-header\"><h4>" + element["title"] + "</h4></div>";
             html += "</div>";
-            });
         });
         html += "</div>";
       });
