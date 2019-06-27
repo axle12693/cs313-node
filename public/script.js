@@ -15,5 +15,6 @@ function displayForumCategories()
             html += "</div>";
         }
         html += "</div>";
+        $("#body_container").html(html);
       });
 }
