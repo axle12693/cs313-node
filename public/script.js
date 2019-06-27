@@ -11,7 +11,7 @@ function displayForumCategories()
         for (var key in json_fcats)
         {
             html += "<div class=\"card bg-primary text-white\">";
-            html += "<div class=\"card-header\"><h4>" + JSON.parse.stringify(json_fcats[key]) + "</h4></div>";
+            html += "<div class=\"card-header\"><h4>" + JSON.stringify(json_fcats[key]) + "</h4></div>";
             html += "</div>";
         }
         html += "</div>";
