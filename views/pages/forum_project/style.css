@@ -1,0 +1,44 @@
+#header_container
+{
+    width: 60%;
+    margin: auto;
+}
+
+#body_container
+{
+    width: 60%;
+    margin: auto;
+}
+
+#home_ML_Image
+{
+    width:300px;
+    height:auto;
+}
+
+.item_pic_left
+{
+    width: 100px;
+    height:auto;
+    float: left;
+    clear: both;
+}
+
+.item
+{
+    overflow: auto;
+}
+
+div.alink:hover
+{
+    background-color: RGBA(0,0,0,0.03);
+    cursor: pointer;
+    color: #DDDDDD;
+    text-decoration: underline;
+}
+
+div.container 
+{
+    padding-left: 0px;
+    padding-right: 0px;
+}
