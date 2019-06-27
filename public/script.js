@@ -1,7 +1,7 @@
 function displayForumCategories()
 {
     $.get("/forum/forum_categories", function(data, status){
-        json_fcats = JSON.parse(data);
+        json_fcats = data;//JSON.parse(data);
         html = "<div class=\"container\">";
         json_fcats.foreach(function(element) {
             html += "<div class=\"card bg-primary text-white\">";
