@@ -90,7 +90,7 @@ express()
     res.render('pages/getRate', {cost: cost, t: t, weight: weight});
   })
   .get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
-  .get('/forum/forum_categories', (req, res) => show_forum_categories())
+  .get('/forum/forum_categories', show_forum_categories)
   .listen(PORT, () => console.log('Listening on ${ PORT }'))
 
 
