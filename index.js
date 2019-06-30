@@ -91,6 +91,16 @@ express()
   })
   .get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
   .get('/forum/forum_categories', show_forum_categories)
+  .get("/forum/forumsInCategory/:fcat_id", function(req, res) {
+    sql = "SELECT * FROM Forum WHERE forum_category_id = $1";
+    pool.query(sql, [req.params.fcat_id], function(err, result) {
+      if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+      }
+      res.send(result.rows) //test
+    });
+  })
   .listen(PORT, () => console.log('Listening on ${ PORT }'))
 
 
