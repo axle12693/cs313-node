@@ -23,7 +23,7 @@ function displayForums(cat_id)
         let fcat_el = $("#fcat" + cat_id);
         for (var key in data)
         {
-            fcat_el.html(fcat.html() + "<div class=\"card-body alink\">" + data[key]["title"]);
+            fcat_el.html(fcat_el.html() + "<div class=\"card-body alink\">" + data[key]["title"]);
         }
     });
 }
