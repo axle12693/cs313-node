@@ -4,11 +4,6 @@ const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const forum = require("./forum");
 
-pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
-})
-
 app = express();
 
 forum.forum_setup(app);
