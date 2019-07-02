@@ -11,7 +11,6 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
-    .listen(PORT, () => console.log('Listening on ${ PORT }'))
   
   
 

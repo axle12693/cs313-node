@@ -1,15 +1,15 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
-const bodyParser = require('body-parser')
+const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
 const { Pool } = require("pg");
 const forum = require("./forum");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
 pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err)
-  process.exit(-1)
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
 })
 
 app = express();
