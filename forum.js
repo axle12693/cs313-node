@@ -1,3 +1,7 @@
+const { Pool } = require("pg");
+const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({connectionString: connectionString});
+
 exports.forum_setup = app => {
     app.get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
     .get('/forum/forum_categories', show_forum_categories)
@@ -11,9 +15,6 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
-  
-  
-
 };
 
 function show_forum_categories(req, res)
