@@ -2,6 +2,11 @@ const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
+pool.on('error', (err, client) => {
+    console.error('Unexpected error on idle client', err);
+    process.exit(-1);
+})
+
 exports.forum_setup = app => {
     app.get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
     .get('/forum/forum_categories', show_forum_categories)
