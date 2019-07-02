@@ -14,7 +14,7 @@ pool.on('error', (err, client) => {
 
 app = express();
 
-
+forum.forum_setup(app);
 
 app
   .use(express.static(path.join(__dirname, 'public')))
