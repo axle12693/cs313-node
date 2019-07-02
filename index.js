@@ -3,6 +3,7 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const bodyParser = require('body-parser')
 const { Pool } = require("pg");
+const forum = require("./forum");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 
@@ -11,8 +12,11 @@ pool.on('error', (err, client) => {
   process.exit(-1)
 })
 
+app = express();
 
-express()
+
+
+app
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: false }))
   .set('views', path.join(__dirname, 'views'))
@@ -89,29 +93,4 @@ express()
 
     res.render('pages/getRate', {cost: cost, t: t, weight: weight});
   })
-  .get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
-  .get('/forum/forum_categories', show_forum_categories)
-  .get("/forum/forumsInCategory/:fcat_id", function(req, res) {
-    sql = "SELECT * FROM Forum WHERE forum_category_id = $1";
-    pool.query(sql, [req.params.fcat_id], function(err, result) {
-      if (err) {
-        console.log("Error in query: ")
-        console.log(err);
-      }
-      res.send(result.rows) //test
-    });
-  })
   .listen(PORT, () => console.log('Listening on ${ PORT }'))
-
-
-function show_forum_categories(req, res)
-{
-  sql = "SELECT * FROM FORUM_CATEGORY";
-  pool.query(sql, function(err, result) {
-    if (err) {
-      console.log("Error in query: ")
-      console.log(err);
-    }
-    res.send(result.rows) //test
-  });
-}
