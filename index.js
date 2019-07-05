@@ -3,7 +3,6 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const forum = require("./forum");
-const w11teach = require("./w11teach");
 
 app = express();
 
