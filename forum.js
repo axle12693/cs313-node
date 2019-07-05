@@ -21,10 +21,10 @@ exports.forum_setup = app => {
       });
     })
     .get("/forum/postsInForum/:id", function(req, res) {
-      sql = "SELECT p.title, p.username, p.date_last_updated, au.username" +
-            "FROM Post p INNER JOIN App_User au" +
-            "ON p.app_user_id = au.app_user_id" +
-            "WHERE forum_id = $1";
+      sql = `SELECT p.title, p.username, p.date_last_updated, au.username
+            FROM Post p INNER JOIN App_User au
+            ON p.app_user_id = au.app_user_id
+            WHERE forum_id = $1`;
       pool.query(sql, [req.params.id], function(err, result) {
         if (err) {
           console.log("Error in query: ")
