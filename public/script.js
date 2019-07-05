@@ -30,7 +30,7 @@ function displayForums(cat_id)
 
 function display_forum(id)
 {
-    $.get("forum/postsInForum/" + id, function(data, status) {
+    $.get("/forum/postsInForum/" + id, function(data, status) {
         $("#body_container").html($("<div class=\"container\">"));
         var i = 0;
         for (var key in data)
