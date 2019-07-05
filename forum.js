@@ -21,7 +21,7 @@ exports.forum_setup = app => {
       });
     })
     .get("/forum/postsInForum/:id", function(req, res) {
-      sql = "SELECT * FROM Post WHERE forum__id = $1";
+      sql = "SELECT * FROM Post WHERE forum_id = $1";
       pool.query(sql, [req.params.id], function(err, result) {
         if (err) {
           console.log("Error in query: ")
