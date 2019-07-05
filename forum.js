@@ -20,6 +20,16 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
+    .get("forum/postsInForum/:id", function(req, res) {
+      sql = "SELECT * FROM Post WHERE forum__id = $1";
+      pool.query(sql, [req.params.id], function(err, result) {
+        if (err) {
+          console.log("Error in query: ")
+          console.log(err);
+        }
+        res.send(result.rows) //test
+      });
+    })
 };
 
 function show_forum_categories(req, res)
