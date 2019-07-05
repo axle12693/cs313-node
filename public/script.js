@@ -31,23 +31,23 @@ function displayForums(cat_id)
 function display_forum(id)
 {
     $.get("/forum/postsInForum/" + id, function(data, status) {
-        $("#body_container").html("<div class=\"container\">");
+        var html = "<div class=\"container\">";
         var i = 0;
         for (var key in data)
         {
             if (i % 2 == 0)
             {
-                $("#body_container").html($("#body_container").html() + "<div class=\"card bg-primary text-white\">");
+                html += "<div class=\"card bg-primary text-white\">";
             }
             else
             {
-                $("#body_container").html($("#body_container").html() + "<div class=\"card bg-info text-white\">");
+                html += "<div class=\"card bg-info text-white\">";
             }
             i += 1;
-            $("#body_container").html($("#body_container").html() + "<div class=\"card-body alink\" onclick=window.location.href=\"post.php?post=" + data[key]["post_id"] + "\">");
-            $("#body_container").html($("#body_container").html() + data[key]["title"] + " - " + data[key]["username"] + " - " + data[key]["date_last_updated"]);
-            $("#body_container").html($("#body_container").html() + "</div></div>");
+            html += "<div class=\"card-body alink\" onclick=window.location.href=\"post.php?post=" + data[key]["post_id"] + "\">";
+            html += data[key]["title"] + " - " + data[key]["username"] + " - " + data[key]["date_last_updated"];
+            html += "</div></div>";
         }
-        $("#body_container").html($("#body_container").html() + "</div>");
+        $("#body_container").html(html + "</div>");
     });
 }
