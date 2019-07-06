@@ -45,7 +45,7 @@ function display_forum(id)
             }
             i += 1;
             html += "<div class=\"card-body alink\" onclick=window.location.href=\"post.php?post=" + data[key]["post_id"] + "\">";
-            html += data[key]["title"] + " - " + data[key]["username"] + " - " + Date(data[key]["date_last_updated"]).toLocaleDateString();
+            html += data[key]["title"] + " - " + data[key]["username"] + " - " + data[key]["date_last_updated"];
             html += "</div></div>";
         }
         $("#body_container").html(html + "</div>");
