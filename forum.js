@@ -21,7 +21,7 @@ exports.forum_setup = app => {
       });
     })
     .get("/forum/postsInForum/:id", function(req, res) {
-      sql = `SELECT      p.post_id, p.title, p.post_content, DATE(p.date_last_updated), au.username, p.date_last_updated AS dlu
+      sql = `SELECT      p.post_id, p.title, p.post_content, p.date_last_updated::date, au.username, p.date_last_updated AS dlu
              FROM        Post p INNER JOIN App_User au 
              ON          p.app_user_id = au.app_user_id
              WHERE       p.forum_id = $1
