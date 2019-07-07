@@ -1,3 +1,35 @@
+function setupMainPage()
+{
+    displayForumCategories();
+    displayForumHeader(-1,-1, "", "")
+}
+
+function displayForumHeader(category_id, forum_id, category_name, forum_name)
+{
+    html = `<nav class="navbar navbar-expand-sm bg-light navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="displayForumCategories()">Mythical Pet Store Forums</a>
+                    </li>`;
+
+    if (category_id >= 0)
+    {
+        html +=    `<li class="nav-item">
+                        <a class="nav-link" onclick="displayCategory('` + category_id + `')"> &gt;&gt; ` + category_name + `</a>
+                    </li>`;
+    }
+
+    if (forum_id >= 0)
+    {
+        html +=    `<li class="nav-item">
+                        <a class="nav-link" onclick="displayForum('` + forum_id + `')"> &gt;&gt; ` + forum_name + `</a>
+                    </li>`;
+    }
+    html +=    `</ul>
+            </nav>`;
+    $("#forum_header").html(html);
+}
+
 function displayForumCategories()
 {
     $.get("/forum/forum_categories", function(json_fcats, status){
