@@ -15,14 +15,14 @@ function displayForumHeader(category_id, forum_id, category_name, forum_name)
     if (category_id >= 0)
     {
         html +=    `<li class="nav-item">
-                        <a class="nav-link" onclick="displayCategory('` + category_id + `')"> &gt;&gt; ` + category_name + `</a>
+                        <a class="nav-link" href="#" onclick="displayForumCategories()"> &gt;&gt; ` + category_name + `</a>
                     </li>`;
     }
 
     if (forum_id >= 0)
     {
         html +=    `<li class="nav-item">
-                        <a class="nav-link" onclick="displayForum('` + forum_id + `')"> &gt;&gt; ` + forum_name + `</a>
+                        <a class="nav-link" onclick="display_forum('` + forum_id + `')"> &gt;&gt; ` + forum_name + `</a>
                     </li>`;
     }
     html +=    `</ul>
