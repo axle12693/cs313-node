@@ -80,6 +80,7 @@ function display_forum(id)
             html += data[key]["title"] + " - " + data[key]["username"] + " - " + data[key]["date_last_updated"];
             html += "</div></div>";
         }
-        $("#body_container").html(html + "</div>");
+        $("#content").html(html + "</div>");
+        displayForumHeader(data[key]["forum_category_id"], data[key]["forum_id"], data[key]["fctitle"], data[key]["ftitle"]);
     });
 }
