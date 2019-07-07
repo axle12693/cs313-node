@@ -41,7 +41,7 @@ function displayForumCategories()
             html += "</div>";
         }
         html += "</div>";
-        $("#body_container").html(html);
+        $("#content").html(html);
         for (var key in json_fcats)
         {
             displayForums(json_fcats[key]["forum_category_id"]);
