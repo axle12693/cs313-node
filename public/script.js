@@ -76,11 +76,24 @@ function display_forum(id)
                 html += "<div class=\"card bg-info text-white\">";
             }
             i += 1;
-            html += "<div class=\"card-body alink\" onclick=window.location.href=\"post.php?post=" + data[key]["post_id"] + "\">";
+            html += "<div class=\"card-body alink\" onclick=\"displayPost(" + data[key]["post_id"] + ")\">";
             html += data[key]["title"] + " - " + data[key]["username"] + " - " + data[key]["date_last_updated"];
             html += "</div></div>";
         }
         $("#content").html(html + "</div>");
         displayForumHeader(data[key]["forum_category_id"], data[key]["forum_id"], data[key]["fctitle"], data[key]["ftitle"]);
+    });
+}
+
+function displayPost(id)
+{
+    $.get("forum/postDisplayDetails/" + id, function(data, status) {
+        var html = "<div class=\"container\">";
+        html += "<div class=\"card bg-success text-white\">";
+        html += "<div class=\"card-header\">";
+        html += "<h4>" + data[key]["title"];
+        html += "</h4><hr>" = data[key]["post_content"] + "<br><br><hr>" + data[key]["username"] + " - " + data[key]["date_last_updated"];
+        html += "</div></div>";
+        
     });
 }
