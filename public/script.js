@@ -105,6 +105,7 @@ function displayPost(id)
                 html += data2[key]["username"] + " - " + data2[key]["date_last_updated"];
                 html += "</div></div>";
             }
+            $("#content").html(html);
         });
     });
 }
