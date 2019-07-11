@@ -52,6 +52,21 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
+    .get("/forum/postDisplayComments/:id", function(req, res) {
+      sql = `SELECT      pc.post_comment_id, pc.deleted, pc.post_comment_content, pc.app_user_id, pc.date_last_updated::date, au.username, pc.date_last_updated AS dlu
+             FROM        Post p INNER JOIN Post_Comment pc
+             ON          p.post_id = pc.post_id INNER JOIN App_User au
+             ON          pc.app_user_id = au.app_user_id
+             WHERE       pc.post_id = $1
+             ORDER BY    dlu`;
+      pool.query(sql, [req.params.id], function(err, result) {
+        if (err) {
+          console.log("Error in query: ")
+          console.log(err);
+        }
+        res.send(result.rows) //test
+      });
+    })
 };
 
 function show_forum_categories(req, res)
