@@ -91,8 +91,8 @@ function displayPost(id)
         var html = "<div class=\"container\">";
         html += "<div class=\"card bg-success text-white\">";
         html += "<div class=\"card-header\">";
-        html += "<h4>" + data[key]["title"];
-        html += "</h4><hr>" + data[key]["post_content"] + "<br><br><hr>" + data[key]["username"] + " - " + data[key]["dlu"];
+        html += "<h4>" + data[0]["title"];
+        html += "</h4><hr>" + data[0]["post_content"] + "<br><br><hr>" + data[0]["username"] + " - " + data[0]["dlu"];
         html += "</div></div>";
     });
 }
