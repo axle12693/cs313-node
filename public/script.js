@@ -96,5 +96,15 @@ function displayPost(id)
         html += "</div></div>";
         $("#content").html(html);
         displayForumHeader(data[0]["forum_category_id"], data[0]["forum_id"], data[0]["fctitle"], data[0]["ftitle"]);
+        $.get("forum/postDisplayComments/" + id, function(data2, status2) {
+            for (var key in data2)
+            {
+                html += "<div class=\"card bg-primary text-white\">";
+                html += "<div class=\"card-body\">";
+                html += data2[key]["post_comment_content"] + "<br><br><hr>";
+                html += data2[key]["username"] + " - " + data2[key]["date_last_updated"];
+                html += "</div></div>";
+            }
+        });
     });
 }
