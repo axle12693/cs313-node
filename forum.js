@@ -36,6 +36,21 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
+    .get("/forum/postDisplayDetails/:id", function(req,res) {
+      sql = `SELECT      p.post_id, p.title, p.post_content, p.date_last_updated::date, au.username, p.date_last_updated AS dlu, f.forum_id, f.title AS ftitle
+             FROM        Post p INNER JOIN App_User au 
+             ON          p.app_user_id = au.app_user_id INNER JOIN Forum f
+             ON          p.forum_id = f.forum_id
+             WHERE       p.forum_id = $1
+             ORDER BY    dlu DESC`;
+      pool.query(sql, [req.params.id], function(err, result) {
+        if (err) {
+          console.log("Error in query: ")
+          console.log(err);
+        }
+        res.send(result.rows) //test
+      });
+    })
 };
 
 function show_forum_categories(req, res)
