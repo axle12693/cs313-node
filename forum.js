@@ -37,10 +37,11 @@ exports.forum_setup = app => {
       });
     })
     .get("/forum/postDisplayDetails/:id", function(req,res) {
-      sql = `SELECT      p.post_id, p.title, p.post_content, p.date_last_updated::date, au.username, p.date_last_updated AS dlu, f.forum_id, f.title AS ftitle
+      sql = `SELECT      p.post_id, p.title, p.post_content, p.date_last_updated::date, au.username, p.date_last_updated AS dlu, f.forum_id, f.title AS ftitle, fc.forum_category_id, fc.title AS fctitle
              FROM        Post p INNER JOIN App_User au 
              ON          p.app_user_id = au.app_user_id INNER JOIN Forum f
-             ON          p.forum_id = f.forum_id
+             ON          p.forum_id = f.forum_id INNER JOIN Forum_Category fc
+             ON          f.forum_category_id = fc.forum_category_id
              WHERE       p.forum_id = $1
              ORDER BY    dlu DESC`;
       pool.query(sql, [req.params.id], function(err, result) {
