@@ -53,7 +53,7 @@ exports.forum_setup = app => {
       });
     })
     .get("/forum/postDisplayComments/:id", function(req, res) {
-      sql = `SELECT      pc.post_comment_id, pc.deleted, pc.post_comment_content, pc.app_user_id, pc.date_last_updated::date, au.username, pc.date_last_updated AS dlu
+      sql = `SELECT      pc.post_comment_id, pc.post_comment_content, pc.app_user_id, pc.date_last_updated::date, au.username, pc.date_last_updated AS dlu
              FROM        Post p INNER JOIN Post_Comment pc
              ON          p.post_id = pc.post_id INNER JOIN App_User au
              ON          pc.app_user_id = au.app_user_id
