@@ -95,6 +95,6 @@ function displayPost(id)
         html += "</h4><hr>" + data[0]["post_content"] + "<br><br><hr>" + data[0]["username"] + " - " + data[0]["dlu"];
         html += "</div></div>";
         $("#content").html(html);
-        displayForumHeader(data[key]["forum_category_id"], data[key]["forum_id"], data[key]["fctitle"], data[key]["ftitle"]);
+        displayForumHeader(data[0]["forum_category_id"], data[0]["forum_id"], data[0]["fctitle"], data[0]["ftitle"]);
     });
 }
