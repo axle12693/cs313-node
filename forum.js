@@ -1,6 +1,8 @@
 const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
+const bcrypt = require('bcrypt');
+const session = require("express-session");
 
 pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err);
@@ -8,7 +10,22 @@ pool.on('error', (err, client) => {
 })
 
 exports.forum_setup = app => {
-    app.get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
+    app.use(session({
+      secret: "this is alex",
+      resave: false,
+      saveUninitialized: true
+    }))
+    .use(function (req, res, next) {
+      if (!req.session.login_vars_setup) {
+        req.session.login_vars_setup = true;
+        req.session.logged_in = false;
+        req.session.logged_in_username = "";
+        req.session.user_id = 0; //db index starts at 1
+      }
+
+      next()
+    })
+    .get('/forum', (req, res) => res.render("pages/forum_project/index.ejs"))
     .get('/forum/forum_categories', show_forum_categories)
     .get("/forum/forumsInCategory/:fcat_id", function(req, res) {
       sql = "SELECT * FROM Forum WHERE forum_category_id = $1";
@@ -65,6 +82,29 @@ exports.forum_setup = app => {
           console.log(err);
         }
         res.send(result.rows) //test
+      });
+    })
+    .use(express.json())
+    .post("/forum/login", function (req, res) {
+      sql = `SELECT pw_hash, app_user_id FROM App_User WHERE username = $1`;
+      pool.query(sql, [req.body.uname], function(err, result) {
+        if (err) {
+          console.log("Error in query: ")
+          console.log(err);
+        }
+        bcrypt.compare(req.body.pword, result["pw_hash"], function(err, cryptRes) {
+          if (cryptRes)
+          {
+            req.session.logged_in = true;
+            req.session.logged_in_username = req.body.uname;
+            req.session.logged_in_user_id = result["app_user_id"];
+          }
+          res.send({
+            success : req.session.logged_in,
+            username : req.session.logged_in_username
+          })
+        });
+        //res.send(result.rows)
       });
     })
 };

@@ -14,6 +14,8 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "express-session": "^1.16.2",
+    "node-bcrypt": "0.0.1",
     "pg": "^7.11.0",
     "pg-pool": "^2.0.6"
   },

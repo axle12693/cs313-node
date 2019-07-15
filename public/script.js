@@ -109,3 +109,13 @@ function displayPost(id)
         });
     });
 }
+
+function tryLogin()
+{
+    $.post("forum/login", {uname : $("#uname").value(), pword : $("#pword").value()}, function(data, status) {
+        if (data.success)
+        {
+            document.write("Success!")
+        }
+    });
+}
