@@ -3,6 +3,7 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 const bcrypt = require('bcrypt');
 const session = require("express-session");
+const express = require("express")
 
 pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err);
@@ -84,7 +85,7 @@ exports.forum_setup = app => {
         res.send(result.rows) //test
       });
     })
-    .use(app.json())
+    .use(express.json())
     .post("/forum/login", function (req, res) {
       sql = `SELECT pw_hash, app_user_id FROM App_User WHERE username = $1`;
       pool.query(sql, [req.body.uname], function(err, result) {
