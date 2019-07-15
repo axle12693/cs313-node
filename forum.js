@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
-const bcrypt = require('bcrypt');
+const bcrypt = require('node-bcrypt');
 const session = require("express-session");
 
 pool.on('error', (err, client) => {
