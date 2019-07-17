@@ -95,9 +95,9 @@ exports.forum_setup = app => {
         }
         console.log("Result of login query: " + result);
 
-        bcrypt.compare(req.body.pword, result[0]["pw_hash"], function(err, cryptRes) {
+        bcrypt.compare(req.body.pword, result["pw_hash"], function(err, cryptRes) {
           console.log("Input password: " + req.body.pword);
-          console.log("pw_hash: " + result[0]["pw_hash"]);
+          console.log("pw_hash: " + result.rows["pw_hash"]);
           if (cryptRes)
           {
             req.session.logged_in = true;
