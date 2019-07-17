@@ -82,7 +82,7 @@ exports.forum_setup = app => {
           console.log("Error in query: ")
           console.log(err);
         }
-        res.send(result.rows) //test
+        res.send(result.rows)
       });
     })
     .use(express.json())
@@ -108,6 +108,38 @@ exports.forum_setup = app => {
         //res.send(result.rows)
       });
     })
+    .post("/forum/updatePasswords", function(req, res){
+      sql = `SELECT * from App_User WHERE pw IS NOT NULL`;
+      pool.query(sql, function(err1, result) {
+        if (err1) {
+          console.log("Error in query: ")
+          console.log(err1);
+        }
+        if (result.rows.length > 0)
+        {
+          for (key in result)
+          {
+            sql = `UPDATE App_User
+                   SET pw = NULL,
+                       pw_hash = $1
+                   WHERE app_user_id = $2`;
+            bcrypt.hash(result[key]["pw"], 10, function(err2, hash) {
+              if (err2) {
+                console.log("Error in hashing: ")
+                console.log(err3);
+              }
+              pool.query(sql, [hash, result[key]["app_user_id"]], function(err3, result) {
+                if (err3) {
+                  console.log("Error in query: ")
+                  console.log(err3);
+                }
+              });
+            });
+          }
+        }
+      });
+    res.send("Success!");
+    })
 };
 
 function show_forum_categories(req, res)
@@ -118,6 +150,6 @@ function show_forum_categories(req, res)
       console.log("Error in query: ")
       console.log(err);
     }
-    res.send(result.rows) //test
+    res.send(result.rows)
   });
 }

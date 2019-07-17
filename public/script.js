@@ -115,7 +115,11 @@ function tryLogin()
     $.post("forum/login", {uname : $("#uname").value(), pword : $("#pword").value()}, function(data, status) {
         if (data.success)
         {
-            document.write("Success!")
+            html = "Hello " + data["username"] + "&nbsp;&nbsp;";
+            html += "<div class=\"form-inline my-2 my-lg-0\">";
+            html += "<button class=\"btn btn-outline-success my-2 my-sm-0\">Log out</button>";
+            html += "</div>";
+            html += "<a class=\"nav-link\" href=\"#\">Change password</a>";
         }
     });
 }
