@@ -93,6 +93,7 @@ exports.forum_setup = app => {
           console.log("Error in query: ")
           console.log(err);
         }
+        console.log("Result of login query: " + result);
         bcrypt.compare(req.body.pword, result["pw_hash"], function(err, cryptRes) {
           if (cryptRes)
           {
