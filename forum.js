@@ -96,10 +96,10 @@ exports.forum_setup = app => {
         console.log("Result of login query: " + result);
 
         bcrypt.compare(req.body.pword, result["pw_hash"], function(err, cryptRes) {
+          console.log("Input password: " + req.body.pword);
+          console.log("pw_hash: " + result["pw_hash"]);
           if (cryptRes)
           {
-            console.log("Input password: " + req.body.pword);
-            console.log("pw_hash: " + result["pw_hash"]);
             req.session.logged_in = true;
             req.session.logged_in_username = req.body.uname;
             req.session.logged_in_user_id = result["app_user_id"];
