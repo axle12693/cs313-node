@@ -115,6 +115,7 @@ exports.forum_setup = app => {
           console.log("Error in query: ")
           console.log(err1);
         }
+        console.log(result);
         if (result.rows.length > 0)
         {
           for (key in result)
