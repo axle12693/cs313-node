@@ -117,7 +117,7 @@ exports.forum_setup = app => {
         }
         if (result.rows.length > 0)
         {
-          for (key in result)
+          for (key in result.rows)
           {
             console.log("Key is: " + key);
             console.log("result[key] is " + result[key])
