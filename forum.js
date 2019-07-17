@@ -95,14 +95,14 @@ exports.forum_setup = app => {
         }
         console.log("Result of login query: " + result);
 
-        bcrypt.compare(req.body.pword, result["pw_hash"], function(err, cryptRes) {
+        bcrypt.compare(req.body.pword, result.rows[0]["pw_hash"], function(err, cryptRes) {
           console.log("Input password: " + req.body.pword);
           console.log("pw_hash: " + result.rows[0]["pw_hash"]);
           if (cryptRes)
           {
             req.session.logged_in = true;
             req.session.logged_in_username = req.body.uname;
-            req.session.logged_in_user_id = result["app_user_id"];
+            req.session.logged_in_user_id = result.rows[0]["app_user_id"];
           }
           res.send({
             success : req.session.logged_in,
