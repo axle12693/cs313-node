@@ -85,7 +85,7 @@ exports.forum_setup = app => {
         res.send(result.rows)
       });
     })
-    .use(express.json())
+    .use(express.urlencoded())
     .post("/forum/login", function (req, res) {
       sql = `SELECT pw_hash, app_user_id FROM App_User WHERE username = $1`;
       pool.query(sql, [req.body.uname], function(err, result) {
