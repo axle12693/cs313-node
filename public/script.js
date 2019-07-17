@@ -112,7 +112,7 @@ function displayPost(id)
 
 function tryLogin()
 {
-    $.post("forum/login", {uname : $("#uname").value(), pword : $("#pword").value()}, function(data, status) {
+    $.post("forum/login", {uname : $("#uname").val(), pword : $("#pword").val()}, function(data, status) {
         if (data.success)
         {
             html = "Hello " + data["username"] + "&nbsp;&nbsp;";
