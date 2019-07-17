@@ -120,6 +120,7 @@ function tryLogin()
             html += "<button class=\"btn btn-outline-success my-2 my-sm-0\">Log out</button>";
             html += "</div>";
             html += "<a class=\"nav-link\" href=\"#\">Change password</a>";
+            $("#loginbar").html(html);
         }
     });
 }
