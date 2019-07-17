@@ -126,12 +126,12 @@ exports.forum_setup = app => {
                    SET pw = NULL,
                        pw_hash = $1
                    WHERE app_user_id = $2`;
-            bcrypt.hash(result[key]["pw"], 10, function(err2, hash) {
+            bcrypt.hash(result.rows[key]["pw"], 10, function(err2, hash) {
               if (err2) {
                 console.log("Error in hashing: ")
                 console.log(err3);
               }
-              pool.query(sql, [hash, result[key]["app_user_id"]], function(err3, result) {
+              pool.query(sql, [hash, result.rows[key]["app_user_id"]], function(err3, result) {
                 if (err3) {
                   console.log("Error in query: ")
                   console.log(err3);
