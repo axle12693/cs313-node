@@ -121,6 +121,7 @@ exports.forum_setup = app => {
           {
             console.log("Key is: " + key);
             console.log("result.rows[key] is " + result.rows[key])
+            console.log("result[key][pw] is " + result[key]["pw"])
             sql = `UPDATE App_User
                    SET pw = NULL,
                        pw_hash = $1
