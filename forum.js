@@ -115,11 +115,12 @@ exports.forum_setup = app => {
           console.log("Error in query: ")
           console.log(err1);
         }
-        console.log(result);
         if (result.rows.length > 0)
         {
           for (key in result)
           {
+            console.log("Key is: " + key);
+            console.log("result[key] is " + result[key])
             sql = `UPDATE App_User
                    SET pw = NULL,
                        pw_hash = $1
