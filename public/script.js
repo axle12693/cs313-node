@@ -137,7 +137,7 @@ function tryLogin()
 
 function showReply()
 {
-    html +=    `<div class="container">
+    html =    `<div class="container">
                     <div class="card bg-secondary text-white">
                         <div class="card-body">
                             <textarea class="form-control" name="reply" cols="30" rows="10"></textarea>
