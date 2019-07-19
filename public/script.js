@@ -112,11 +112,12 @@ function displayPost(id)
             $.get("forum/isLoggedIn", function(data, status) {
                 if (data)
                 {
-                    showReply();
+                    showReply(id);
                 }
             })
         });
     });
+    viewingPost = true;
 }
 
 function tryLogin()
@@ -130,18 +131,19 @@ function tryLogin()
             html += "</div>";
             html += "<a class=\"nav-link\" href=\"#\">Change password</a>";
             $("#loginbar").html(html);
-            showReply();
+            if (viewingPost)
+                showReply();
         }
     });
 }
 
-function showReply()
+function showReply(post_id)
 {
     html =    `<div class="container">
                     <div class="card bg-secondary text-white">
                         <div class="card-body">
                             <textarea class="form-control" name="reply" cols="30" rows="10"></textarea>
-                            <button value="Reply">Reply</button>
+                            <button value="Reply" onclick="replyToPost(` + post_id + `)">Reply</button>
                         </div>
                     </div>
                 </div>`;
@@ -151,6 +153,7 @@ function showReply()
 function hideReply()
 {
     $("#reply").html("")
+    viewingPost = false;
 }
 
 function logout()
