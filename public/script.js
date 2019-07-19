@@ -127,7 +127,7 @@ function tryLogin()
 
 function logout()
 {
-    $post("forum/logout", function(data, status) {
+    $.post("forum/logout", function(data, status) {
         html = `<div class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Username" id="uname">
                     <input class="form-control mr-sm-2" type="password" placeholder="Password" id="pword">
