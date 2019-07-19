@@ -153,6 +153,9 @@ exports.forum_setup = app => {
       req.session.logged_in_user_id = 0;
       res.send("Success!");
     })
+    .get("/forum/isLoggedIn", function(req, res) {
+      res.send(req.session.logged_in);
+    })
 };
 
 function show_forum_categories(req, res)
