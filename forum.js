@@ -164,7 +164,7 @@ exports.forum_setup = app => {
         sql =  `INSERT INTO Post_Comment
                   (post_id, app_user_id, post_comment_content, date_last_updated)
                 VALUES
-                  $1, $2, $3, current_timestamp`;
+                  ($1, $2, $3, current_timestamp)`;
         pool.query(sql, [post_id, req.session.logged_in_user_id, content], function(err, result) {
           if (err) {
             console.log("Error in query: ")
