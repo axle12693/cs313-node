@@ -138,7 +138,7 @@ function tryLogin()
     });
 }
 
-replyToPost(id)
+function replyToPost(id)
 {
     $.post("forum/replyToPost", {content : $("#replyText").val(), post_id : id}, function(data, status) {
         if (data)
