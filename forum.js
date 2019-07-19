@@ -166,9 +166,9 @@ exports.forum_setup = app => {
                 VALUES
                   $1, $2, $3, current_timestamp`;
         pool.query(sql, [post_id, req.session.logged_in_user_id, content], function(err, result) {
-          if (err3) {
+          if (err) {
             console.log("Error in query: ")
-            console.log(err3);
+            console.log(err);
           }
           res.send(err);
         });
