@@ -47,7 +47,7 @@ function displayForumCategories()
             displayForums(json_fcats[key]["forum_category_id"]);
         }
     });
-    hideReply();
+    hideReply(true);
 }
 
 function displayForums(cat_id)
@@ -59,7 +59,7 @@ function displayForums(cat_id)
             fcat_el.html(fcat_el.html() + "<div class=\"card-body alink\" onclick=\"display_forum(" + data[key]["forum_id"] + ")\">" + data[key]["title"]);
         }
     });
-    hideReply();
+    hideReply(true);
 }
 
 function display_forum(id)
@@ -85,7 +85,7 @@ function display_forum(id)
         $("#content").html(html + "</div>");
         displayForumHeader(data[key]["forum_category_id"], data[key]["forum_id"], data[key]["fctitle"], data[key]["ftitle"]);
     });
-    hideReply();
+    hideReply(true);
 }
 
 function displayPost(id)
@@ -118,6 +118,7 @@ function displayPost(id)
         });
     });
     viewingPost = true;
+    viewingPostID = id;
 }
 
 function tryLogin()
@@ -132,7 +133,7 @@ function tryLogin()
             html += "<a class=\"nav-link\" href=\"#\">Change password</a>";
             $("#loginbar").html(html);
             if (viewingPost)
-                showReply();
+                showReply(viewingPostID);
         }
     });
 }
@@ -150,10 +151,10 @@ function showReply(post_id)
     $("#reply").html(html);
 }
 
-function hideReply()
+function hideReply(disable)
 {
     $("#reply").html("")
-    viewingPost = false;
+    viewingPost = !disable;
 }
 
 function logout()
@@ -165,6 +166,6 @@ function logout()
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="tryLogin()">Login/Sign up</button>
                 </div>`;
         $("#loginbar").html(html);
-        hideReply();
+        hideReply(false);
     })
 }
