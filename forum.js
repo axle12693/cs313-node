@@ -170,7 +170,7 @@ exports.forum_setup = app => {
             console.log("Error in query: ")
             console.log(err);
           }
-          res.send(err);
+          res.send(!err);
         });
       }
       else
