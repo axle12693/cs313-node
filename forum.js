@@ -156,6 +156,28 @@ exports.forum_setup = app => {
     .get("/forum/isLoggedIn", function(req, res) {
       res.send(req.session.logged_in);
     })
+    .post("/forum/replyToPost", function(req, res) {
+      content = req.body.content;
+      post_id = req.body.post_id;
+      if (req.session.logged_in)
+      {
+        sql =  `INSERT INTO Post_Comment
+                  (post_id, app_user_id, post_comment_content, date_last_updated)
+                VALUES
+                  $1, $2, $3, current_timestamp`;
+        pool.query(sql, [post_id, req.session.logged_in_user_id, content], function(err, result) {
+          if (err3) {
+            console.log("Error in query: ")
+            console.log(err3);
+          }
+          res.send(err);
+        });
+      }
+      else
+      {
+        res.send(false);
+      }
+    })
 };
 
 function show_forum_categories(req, res)

@@ -138,12 +138,27 @@ function tryLogin()
     });
 }
 
+replyToPost(id)
+{
+    $.post("forum/replyToPost", {content : $("#replyText").val(), post_id : id}, function(data, status) {
+        if (data)
+        {
+            $("#replyText").val("");
+            displayPost(id);
+        }
+        else
+        {
+            alert("Please log in before attempting to reply to a post!");
+        }
+    })
+}
+
 function showReply(post_id)
 {
     html =    `<div class="container">
                     <div class="card bg-secondary text-white">
                         <div class="card-body">
-                            <textarea class="form-control" name="reply" cols="30" rows="10"></textarea>
+                            <textarea class="form-control" id="replyText" cols="30" rows="10"></textarea>
                             <button value="Reply" onclick="replyToPost(` + post_id + `)">Reply</button>
                         </div>
                     </div>
