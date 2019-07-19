@@ -117,10 +117,22 @@ function tryLogin()
         {
             html = "Hello " + data["username"] + "&nbsp;&nbsp;";
             html += "<div class=\"form-inline my-2 my-lg-0\">";
-            html += "<button class=\"btn btn-outline-success my-2 my-sm-0\">Log out</button>";
+            html += "<button class=\"btn btn-outline-success my-2 my-sm-0\" onclick=\"logout()\">Log out</button>";
             html += "</div>";
             html += "<a class=\"nav-link\" href=\"#\">Change password</a>";
             $("#loginbar").html(html);
         }
     });
+}
+
+function logout()
+{
+    $post("forum/logout", function(data, status) {
+        html = `<div class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Username" id="uname">
+                    <input class="form-control mr-sm-2" type="password" placeholder="Password" id="pword">
+                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="tryLogin()">Login/Sign up</button>
+                </div>`;
+        $("#loginbar").html(html);
+    }
 }

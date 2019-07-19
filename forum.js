@@ -93,11 +93,11 @@ exports.forum_setup = app => {
           console.log("Error in query: ")
           console.log(err);
         }
-        console.log("Result of login query: " + result);
+        //console.log("Result of login query: " + result);
 
         bcrypt.compare(req.body.pword, result.rows[0]["pw_hash"], function(err, cryptRes) {
-          console.log("Input password: " + req.body.pword);
-          console.log("pw_hash: " + result.rows[0]["pw_hash"]);
+          //console.log("Input password: " + req.body.pword);
+          //console.log("pw_hash: " + result.rows[0]["pw_hash"]);
           if (cryptRes)
           {
             req.session.logged_in = true;
@@ -123,9 +123,9 @@ exports.forum_setup = app => {
         {
           for (key in result.rows)
           {
-            console.log("Key is: " + key);
-            console.log("result.rows[key] is " + result.rows[key])
-            console.log("result.rows[key][pw] is " + result.rows[key]["pw"])
+            //console.log("Key is: " + key);
+            //console.log("result.rows[key] is " + result.rows[key])
+            //console.log("result.rows[key][pw] is " + result.rows[key]["pw"])
             sql = `UPDATE App_User
                    SET pw = NULL,
                        pw_hash = $1
@@ -146,6 +146,12 @@ exports.forum_setup = app => {
         }
       });
     res.send("Success!");
+    })
+    .post("/forum/logout", function(req, res) {
+      req.session.logged_in = false;
+      req.session.logged_in_username = "";
+      req.session.logged_in_user_id = 0;
+      res.send("Success!")
     })
 };
 
