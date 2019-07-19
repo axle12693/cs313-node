@@ -151,7 +151,7 @@ exports.forum_setup = app => {
       req.session.logged_in = false;
       req.session.logged_in_username = "";
       req.session.logged_in_user_id = 0;
-      res.send("Success!")
+      res.send("Success!");
     })
 };
 

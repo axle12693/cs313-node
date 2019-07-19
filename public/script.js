@@ -134,5 +134,5 @@ function logout()
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="tryLogin()">Login/Sign up</button>
                 </div>`;
         $("#loginbar").html(html);
-    }
+    })
 }
